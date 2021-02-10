@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
+<<<<<<< HEAD
   get 'static_pages/home'
   get 'static_pages/help'
   get 'static_pages/about'
   get 'static_pages/contact'
+=======
+
+  get  '/signup',  to: 'user#new'
+>>>>>>> filling-in-layout
 =======
 
   get  '/signup',  to: 'user#new'
