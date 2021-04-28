@@ -1,9 +1,17 @@
-<!--<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "sample app", root_path, id: "logo" %>
+    </div>   
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <% if logged_in? %>
@@ -24,37 +32,6 @@
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>-->
-<header class="navbar navbar-fixed-top navbar-inverse">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-  <div class="container">
-
-    <!-- 追記ここから-->
-    <div class="navbar-header">
-
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <!-- 追記ここまで-->
-
-      <%= link_to "sample app", root_path, id: "logo" %>
-
-    <!-- 追記ここから-->
-    </div>
-    <!-- 追記ここまで-->
-
-    <nav>
-      <!-- ulタグ内に「id="navbar"」を追記、classに「navbar-collapse collapse」を追記 -->
-      <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "Help",   help_path %></li>
-        <li><%= link_to "Log in", '#' %></li>
       </ul>
     </nav>
   </div>
