@@ -18,6 +18,21 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 5 }, allow_nil: true
+  
+  
+  # 保存する前に一意ユーザ名を全て小文字に変換する
+  before_save   :downcase_unique_name
+
+  # @一意ユーザ名の正規表現(大文字小文字を区別しない、半角英数とアンダースコアのみ)
+  VALID_UNIQUE_NAME_REGEX = /\A[a-z0-9_]+\z/i
+
+  # バリデーション
+  validates :unique_name, presence: true,                              # 空でないこと
+                          length: { in: 5..15 },                       # 長さ5～15文字であること
+                          format: { with: VALID_UNIQUE_NAME_REGEX },   # 一意ユーザ名の正規表現にマッチすること
+                          uniqueness: { case_sensitive: false }        # 大文字小文字に関わらず一意であること
+
+  
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -83,9 +98,11 @@ class User < ApplicationRecord
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Micropost.where("user_id IN (#{following_ids})
-                     OR user_id = :user_id", user_id: id)  
+                     OR user_id = :user_id
+                     OR in_reply_to = :user_id", user_id: id)  
+                    #  following_ids: user.following_ids,
   end
-
+  
   # ユーザーをフォローする
   def follow(other_user)
     following << other_user
@@ -112,5 +129,10 @@ class User < ApplicationRecord
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+    # 一意ユーザ名をすべて小文字にする
+    def downcase_unique_name
+      self.unique_name.downcase!
     end
 end
