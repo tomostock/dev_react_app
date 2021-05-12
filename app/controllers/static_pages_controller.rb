@@ -14,4 +14,9 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def test
+    @test = "no name"
+    @test = current_user.name if logged_in?
+  end
 end
