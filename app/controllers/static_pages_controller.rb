@@ -18,5 +18,6 @@ class StaticPagesController < ApplicationController
   def test
     @test = "no name"
     @test = current_user.name if logged_in?
+    @beatles = Beatle.all
   end
 end

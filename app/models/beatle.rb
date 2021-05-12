@@ -1,0 +1,2 @@
+class Beatle < ApplicationRecord
+end

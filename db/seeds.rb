@@ -43,3 +43,6 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+#beatles
+Beatle.create([{ name: 'John Lennon' }, { name: 'Paul McCartney' }, { name: 'George Harrison' }, { name: 'Ringo Star' }])
