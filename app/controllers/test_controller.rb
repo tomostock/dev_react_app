@@ -1,7 +1,8 @@
 class TestController < ApplicationController
   def index
-    @test = "no name"
-    @test = current_user.name if logged_in?
     @beatles = Beatle.all
+    fav = current_user.beatlefav.to_i
+    @beatle = Beatle.find(fav).name
+    @beatle = "no name" unless logged_in?
   end
 end

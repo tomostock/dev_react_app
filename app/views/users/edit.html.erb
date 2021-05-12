@@ -18,6 +18,9 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <%= f.label :beatlefav, "beatlefav" %>
+      <%= f.collection_select(:name, @beatles, :id, :name) %>
+      
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
 
