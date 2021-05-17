@@ -3,7 +3,12 @@
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <%= micropost.user.unique_name %>
   <span class="content">
-    <%= micropost.content %>
+    <% if micropost.content.include?("@") %>
+      <%= link_to replay_content(micropost)[0], replay_content(micropost)[2] %>
+      <%= replay_content(micropost)[1] %>
+    <% else %>
+      <%= micropost.content %>
+    <% end %>
     <%= image_tag micropost.picture.url if micropost.picture? %>
   </span>
   <span class="timestamp">

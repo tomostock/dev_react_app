@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @beatles = Beatle.all
   end
 
   def update
@@ -84,5 +83,6 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+
 end
 

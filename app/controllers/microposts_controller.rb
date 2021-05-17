@@ -36,6 +36,15 @@ class MicropostsController < ApplicationController
 #    redirect_back(fallback_location: root_url)
   end
 
+  # SUGGEST_MAX_COUNT = 5
+  def search
+    # api_suggest = ApiSuggest.new
+    # @suggests = ["@example_1", "@example_3", "@example_3"]
+    # respond_to do |format|
+    #   format.json { render suggest_path, json: @suggests }
+    # end
+  end
+
   private
 
     def micropost_params
